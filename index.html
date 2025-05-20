@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Иван Воропаев | Frontend Разработчик</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Стили для модального окна */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>Иван Воропаев</h1>
+      <p class="position">Frontend Разработчик</p>
+      <p class="description">
+        Создаю современные веб-приложения с акцентом на UX и производительность.
+      </p>
+      <div class="buttons">
+        <a href="#" class="btn download">Скачать PDF</a>
+        <a href="#contact" class="btn outline">Связаться со мной</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="content container">
+    <!-- Опыт работы -->
+    <section class="experience section animate-on-scroll">
+      <h2>Опыт работы</h2>
+      <div class="card">
+        <h3>Frontend Разработчик | ООО "ТехноСтарт"</h3>
+        <p class="time">Апрель 2021 — настоящее время</p>
+        <ul>
+          <li>Разработка интерфейсов с использованием React</li>
+          <li>Верстка по дизайн-макетам Figma</li>
+          <li>Оптимизация производительности сайта</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Junior Frontend | ООО "ВебСтудия"</h3>
+        <p class="time">Январь 2020 — Март 2021</p>
+        <ul>
+          <li>Участие в командной разработке сайтов</li>
+          <li>Работа с HTML/CSS/JS</li>
+          <li>Поддержка старого кода и рефакторинг</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Образование -->
+    <section class="education section animate-on-scroll">
+      <h2>Образование</h2>
+      <div class="card">
+        <h3>МГТУ «Станкин», специальность: Автоматизация технологических процессов и производств</h3>
+        <p class="time">2022 — 2026</p>
+      </div>
+      <div class="card">
+        <h3>Online-курсы: Web-разработка от Яндекс Практикума</h3>
+        <p class="time">2020</p>
+      </div>
+    </section>
+
+    <!-- Навыки -->
+    <section class="skills section animate-on-scroll">
+      <h2>Навыки</h2>
+      <ul class="skills-list">
+        <li>HTML5 / CSS3</li>
+        <li>JavaScript (ES6+)</li>
+        <li>React</li>
+        <li>Git</li>
+        <li>Responsive Design</li>
+        <li>UX/UI Основы</li>
+        <li>Командная работа</li>
+        <li>Time Management</li>
+      </ul>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact section animate-on-scroll">
+      <h2>Свяжитесь со мной</h2>
+      <form id="contact-form" class="contact-form">
+        <input type="text" id="name" placeholder="Ваше имя" required/>
+        <input type="email" id="email" placeholder="Ваш email" required/>
+        <textarea id="message" rows="5" placeholder="Сообщение" required></textarea>
+        <button type="submit">Отправить</button>
+        <p id="form-response"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Иван Воропаев. Все права защищены.</p>
+  </footer>
+
+  <!-- Модальное окно для заглушки PDF -->
+  <div id="pdf-placeholder-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <p>Функция скачивания PDF временно недоступна. Пожалуйста, попробуйте позже.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Получаем элементы модального окна
+    const modal = document.getElementById('pdf-placeholder-modal');
+    const closeButton = document.querySelector('.close-button');
+    const downloadButton = document.querySelector('.btn.download');
+
+    // Функция для открытия модального окна
+    function openModal() {
+      modal.style.display = 'block';
+    }
+
+    // Функция для закрытия модального окна
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Обработчик события для кнопки "Скачать PDF"
+    downloadButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      openModal();
+    });
+
+    // Обработчик события для кнопки закрытия модального окна
+    closeButton.addEventListener('click', closeModal);
+
+    // Обработчик события для закрытия модального окна при клике вне его
+    window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
